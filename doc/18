@@ -1,0 +1,62 @@
+File类：
+file.list(new FileNameFilter()) 过滤文件名字
+匿名内部类只能引用外围环境的final变量：java对闭包支持的局限，实际上是拷贝了外围变量到匿名内部类中，而不是引用，所以匿名类无法修改外围环境的变量
+File类的构造函数相对路径为工程所在目录，new File("src") new File("/")斜杠解析为根目录
+
+file.reNameTo(): 重命名或移动文件 oldFile.reNameTo(new File("" + oldFile.getName()))
+
+java.io总结——https://www.ibm.com/developerworks/cn/java/j-lo-javaio/index.html
+1)分类 数据格式和传输方式是影响IO的因素
+	基于字节操作的 I/O 接口：InputStream 和 OutputStream
+	基于字符操作的 I/O 接口：Writer 和 Reader
+	基于磁盘操作的 I/O 接口：File
+	基于网络操作的 I/O 接口：Socket
+2)继承关系图
+	见doc内图片
+3)用法
+	尽量尝试使用Reader和Writer
+	几乎所有操作都要进行缓冲器包装
+	PrintWriter可以进行格式化操作(printInt,printDouble...),但是没有相应的类用来恢复数据
+	所以为了输出可供另一个类恢复，用DataInputStream与DataOutputStream(字符串用readUTF)
+
+编码问题——https://www.ibm.com/developerworks/cn/java/j-lo-chinesecoding/
+iso8859-1：单字节编码，不支持中文
+gb2312：支持6000多个汉字
+gbk：兼容gb2312，支持更多汉字
+utf-16：规则简单效率高，适合本地磁盘与内存使用，双字节编码，浪费空间
+utf-8：字母单字节，汉字三字节，适合网络传输
+for (byte b : bytes) {
+	int high = (b>>4) & 0x0f;
+	int low = b & 0x0f;
+	char[] chars = new char[2];
+	
+	chars[0] = (high>9 ? (char)(high-10+'a') : (char)(high+'0'));
+	chars[1] = (low>9 ? (char)(low-10+'a') : (char)(low+'0'));
+	
+	System.out.print(new String(chars) + " ");
+}
+System.out.print(chars[0] + chars[1] + " "):char型数据加减法是转换成码值，用码值的int值进行运算
+UTF-8就是在互联网上使用最广的一种unicode的实现方式，这是为传输而设计的编码，并使编码无国界
+
+阻塞非阻塞，同步异步——https://www.zhihu.com/question/19732473
+同步和异步关注的是消息通信机制（水壶与响水壶）：调用发出后，调用者不等待返回值直接返回
+阻塞与非阻塞关注程序在等待结果时的状态：（等水开，去客厅看电视），与同步异步无关
+
+NIO vs IO
+NIO：链接数很多，但每条链接的数据不多（聊天服务器，p2p网络），针对网络传输优化
+IO：链接不多，每条链接占用很大带宽
+
+序列化：
+将实现Serializable接口的对象转化为字节序列，在将来重新构造为对象（远程调用）
+Serializable：恢复时不用调用对象的构造函数，对象完全以它存储的二进制位来构造
+Externalization：所有的默认构造器会被调用（包括字段定义时的初始化），后调用readExternal,
+手动恢复字段数据
+transient关键字：修饰字段不会被自动序列化
+
+
+
+
+
+
+
+

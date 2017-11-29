@@ -1,0 +1,32 @@
+ArrayList： add, get, size
+
+在创建时使用具体类型，然后向上转型为接口，便于修改实现
+List<?> list = new ArrayList<>();
+没有重载下标运算，用get获取元素
+
+迭代器：轻量级，将遍历操作与底层结构分离
+可选方法：并不是所有实现类都要实现的方法
+
+用linkdlist构造stack（性能更好）
+addFirst  removeFirst  getFirst
+set与Collection接口相同
+
+linkedlist实现了queue的接口
+offer（add）  poll(remove)
+优先队列：依赖具体实现在插入时维持顺序或在移除时选择最小的元素
+
+collection是描述所有有序容器共性的根接口
+使用接口能创建更加通用的代码
+
+适配器方法，继承iterable类，覆盖itertor方法只能实现一种模式
+		   添加一个产生iterable对象的方法
+
+Arrays.asList产生的list对象会使用底层数组作为其物理实现，因此对list对象的修改会反应在底层数组上
+
+遍历map的方式：
+1)Map.Entry<K, V> entry    entry.getKey(), entry.getValue()
+2)map.keySet(),  map.values()
+3)Iterator<Map.entry<K,V>> it = map.entrySet().iterator
+4)Key key : map.keySet()
+	value = map.get(key)
+通过键找值

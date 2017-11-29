@@ -1,0 +1,15 @@
+元注解
+@Target : ElementType.FIELD...作用目标
+@Retention：SOURCE，CLASS，RUNTIME 作用级别
+@Documented：包含在javadoc中
+@Inherited：可以继承
+
+注解元素要么有默认值，要么在使用时提供值
+非基本类型元素不能以null作为值
+惯用法： 
+@interface Usecase {
+	public int id() default -1;
+	public String description() default ""; 
+}
+
+Class.forName(): 参数为全类名（包含包名）

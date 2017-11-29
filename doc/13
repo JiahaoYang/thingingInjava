@@ -1,0 +1,39 @@
+String不可变
+javap -c xxx 显示字节码文件对应的汇编代码
+在循环中有字符串拼接操作，显示创建StringBuilder
+
+StringBuilder：append，delete，insert，replace，substring，reverse  
+
+String方法：length，getChars, getBytes, compareTo, contains, trim, indexOf, endsWith， subString, replace
+
+d 整形
+c unicode字符
+b 布尔
+f 浮点
+s string
+e 浮点（科学）
+x 16进制整形
+h 散列码
+
+正则表达式：匹配，选择，编辑，验证
+string.split(regex):根据正则表达式切字符串（匹配部分都被切除）
+贪婪型（默认）
+懒惰型 （xxx?）
+Pattern.compile(regex)  String正则表达式构造Pattern对象
+pattern.matcher(exp) pattern对象利用要查找的表达式构造matcher对象
+matcher.find()  match.group() 当前匹配  match.start() end()
+
+m.matches()  整个字符串是否匹配
+m.lookingAt()  字符串开头是否匹配
+分组
+匹配过后不会从头开始匹配
+Pattern模式（多行模式，忽略大小写模式。。。）
+split()  断开边界由正则表达式确定
+
+替换
+replaceFirst replaceAll appendReplacement
+matcher.reset("dsaddas")重置匹配序列
+matcher.reset() 重置到当前序列开头
+
+Scanner扫描输入：接受File，InputStream，String，Readable对象构造Scanner
+hasNext(pattern)  扫描查找下一个符合模式的字段

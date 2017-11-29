@@ -1,0 +1,28 @@
+泛型方法独立于泛型类，泛型方法独立于类产生变化
+泛型的类型推导：
+http://www.cnblogs.com/heimianshusheng/p/5766573.html
+java各版本新特性
+http://blog.csdn.net/bigtree_3721/article/details/74375289
+
+擦除：在泛型代码内部，无法获得有关泛型参数类型的任何信息（转型， instanceof，new表达式）
+泛型的所有动作都发生在边界处（对传递进来的值进行额外的编译期检查，并插入对传出值的转型）
+任何在运行时需要确切类型的操作都无法进行
+
+class对象：由jvm在编译*.java文件时隐式创建并保存在*.class文件中，包含一个类的全部信息
+https://segmentfault.com/a/1190000004706888
+
+泛型数组：数组在创建的时候必须知道内部元素的类型，而且一直都会记得这个类型信息，每次往数组里添加元素，都会做类型检查。
+	    因为有擦除，数组的运行时类型就T的是Object[],如果我们立即将它转型为T[], 在编译期该数组的实际类型就丢失，最好在集合内部用Object[],当使用数组元素时加一个对T的转型
+容器的类型和容器持有的类型
+Fruit[] fruits = new Apple[10] ArrayStoreExpection
+List<Fruit> lists = new ArrayList<Apple> compile error Apple的list不是fruit的list（泛型没有內建协变类型）
+
+协变（covariant），如果它保持了子类型序关系≦。该序关系是：子类型≦基类型。
+逆变（contravariant），如果它逆转了子类型序关系。
+
+通配符：https://www.zhihu.com/question/20400700/answer/117464182
+https://segmentfault.com/a/1190000005337789
+List：持有任何Object类型的原生类型
+List<?>:具有某种特定类型的非原生list
+
+强类型/静态类型 ：https://www.zhihu.com/question/19918532

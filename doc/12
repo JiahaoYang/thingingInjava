@@ -1,0 +1,35 @@
+在堆上用new创建对象后传给throw
+通常，异常对象仅有的信息就是异常类型
+
+终止模型：假设错误非常关键，程序无法回到异常发生点继续执行。一旦异常被抛出，错误已经无法挽回（c,c++,java,python）
+恢复模型：修正错误，重新尝试调用出问题的方法。恢复程序需要了解异常抛出地点，需要依赖位置的非通用性代码，编写维护困难
+
+客户端程序员一般只关心异常类型 getClass
+
+被检查的异常
+
+getMessage < getlocalizedMessage < toString < printStackTrace
+
+重新抛出异常：直接抛出原异常的引用，所有信息得以保存
+			 抛出另一种异常，类似于fillInStackTrace，有关原地点的信息丢失
+
+THrowable子类：Error，编译时和系统错误
+			  Exception：异常
+
+RuntimeException：被jvm自动抛出，不受检查的异常（不用捕获）
+如果没有被捕获而直达main（），在退出前调用printStackTrace（）方法
+代表编程错误：在控制范围外传进null引用
+
+finall：把除内存之外的资源恢复到初始状态：已打开的文件或网络链接
+
+一般而言，Checked Exception 表示这个Exception 必须要被处理，也就是说程序设计者应该已经知道可能会收到某个Exception(因为要try catch住) ，所以程序设计者应该能针对这些不同的Checked Exception 做出不同的处理。
+　　而Runtime Exception 通常会暗示着程序上的错误，这种错误会导致程序设计者无法处理，而造成程序无法继续执行下去。
+Use checked exceptions for recoverable conditions and runtime exceptions for programming errors
+
+异常的限制：在类继承中，基类的接口必须出现在派生类中，接口变大
+		   派生类的方法可以声明基类的异常或其异常的派生类，也可不声明，接口“变小”
+
+
+try-with-resource:实现closeable接口的类，需要关闭的资源
+
+http://www.ablanxue.com/shtml/201703/36633_1.shtml
